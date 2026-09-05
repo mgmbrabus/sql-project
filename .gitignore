@@ -39,3 +39,6 @@ out/
 *.zip
 *.tar.gz
 *.rar
+
+!artifacts/app-deadline.jar
+!gradle/wrapper/gradle-wrapper.jar
