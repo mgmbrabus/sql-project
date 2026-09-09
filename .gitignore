@@ -32,6 +32,7 @@ out/
 .vscode/
 
 ### Package Files ###
+data/
 *.jar
 *.war
 *.nar

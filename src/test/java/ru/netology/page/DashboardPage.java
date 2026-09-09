@@ -1,5 +1,6 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -9,6 +10,6 @@ public class DashboardPage {
     private final SelenideElement heading = $("[data-test-id=dashboard]");
 
     public DashboardPage() {
-        heading.shouldBe(visible);
+        heading.shouldBe(visible).shouldHave(Condition.text("Личный кабинет"));
     }
 }
