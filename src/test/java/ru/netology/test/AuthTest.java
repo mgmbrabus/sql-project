@@ -1,6 +1,7 @@
 package ru.netology.test;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
@@ -33,10 +34,16 @@ public class AuthTest {
     @Test
     void shouldBlockAfterThreeWrongPasswords() {
         var loginPage = new LoginPage();
-        var badAuthInfo = DataHelper.generateRandomAuthInfo();
-        loginPage.invalidLogin(badAuthInfo);
-        loginPage.invalidLogin(badAuthInfo);
-        loginPage.invalidLogin(badAuthInfo);
-        loginPage.verifyErrorNotificationVisibility();
+        var validUser = DataHelper.getAuthInfo();
+
+        for (int i = 0; i < 3; i++) {
+            var badAuthInfo = new DataHelper.AuthInfo(validUser.getLogin(), DataHelper.getRandomPassword());
+            loginPage.invalidLogin(badAuthInfo);
+            loginPage.verifyErrorNotificationVisibility();
+            loginPage.cleanFields();
+        }
+
+        var actualStatus = SQLHelper.getUserStatus(validUser.getLogin());
+        Assertions.assertEquals("blocked", actualStatus);
     }
 }

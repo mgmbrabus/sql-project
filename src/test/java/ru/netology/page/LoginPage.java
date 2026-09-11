@@ -2,6 +2,7 @@ package ru.netology.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -26,6 +27,11 @@ public class LoginPage {
 
     public void invalidLogin(DataHelper.AuthInfo info) {
         login(info);
+    }
+
+    public void cleanFields() {
+        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }
 
     public void verifyErrorNotificationVisibility() {

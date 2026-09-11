@@ -18,11 +18,11 @@ public class DataHelper {
     }
 
     public static AuthInfo getAuthInfo() {
-        return new AuthInfo("vasya", "password");
+        return new AuthInfo("vasya", "qwerty123");
     }
 
-    public static AuthInfo generateRandomAuthInfo() {
-        return new AuthInfo(faker.name().username(), faker.internet().password());
+    public static String getRandomPassword() {
+        return faker.internet().password();
     }
 
     @Value
